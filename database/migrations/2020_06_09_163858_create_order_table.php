@@ -17,7 +17,6 @@ class CreateOrderTable extends Migration
             $table->string('name_latin',35)->primary();
             $table->string('name_latvian',35);
             $table->string('class', 35)->constrained();
-            $table->timestamps();
         });
     }
 

@@ -15,12 +15,11 @@ class CreateGenusTable extends Migration
     {
         Schema::create('genus', function (Blueprint $table) {
             $table->string('name_latin',35)->primary();
-            $table->string('name_latvian',35);
+            $table->string('name_latvian',35)->nullable();
             $table->string('family', 35)->nullable();
             $table->foreign('family')->references('name_latin')->on('family');
             $table->string('subfamily', 35)->nullable();
             $table->foreign('subfamily')->references('name_latin')->on('subfamily');
-            $table->timestamps();
         });
     }
 

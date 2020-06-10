@@ -30,7 +30,6 @@ class CreateSpeciesTable extends Migration
             $table->foreign('genus')->references('name_latin')->on('genus');
             $table->tinyInteger('lsg')->nullable();
             $table->foreign('lsg')->references('category')->on('lsg');
-            $table->timestamps();
         });
     }
 

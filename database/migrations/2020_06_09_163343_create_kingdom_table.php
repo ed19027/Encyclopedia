@@ -16,7 +16,6 @@ class CreateKingdomTable extends Migration
         Schema::create('kingdom', function (Blueprint $table) {
             $table->string('name_latin',35)->primary();
             $table->string('name_latvian',35);
-            $table->timestamps();
         });
     }
 

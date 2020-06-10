@@ -15,10 +15,9 @@ class CreateSubfamilyTable extends Migration
     {
         Schema::create('subfamily', function (Blueprint $table) {
             $table->string('name_latin',35)->primary();
-            $table->string('name_latvian',35);
-            $table->string('family', 35)->nullable();
+            $table->string('name_latvian',35)->nullable();
+            $table->string('family', 35);
             $table->foreign('family')->references('name_latin')->on('family');
-            $table->timestamps();
         });
     }
 

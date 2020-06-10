@@ -17,7 +17,6 @@ class CreateSubdivisionTable extends Migration
             $table->string('name_latin',35)->primary();
             $table->string('name_latvian',35);
             $table->string('division', 35)->constrained();
-            $table->timestamps();
         });
     }
 

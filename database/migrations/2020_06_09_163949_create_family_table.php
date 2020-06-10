@@ -19,7 +19,6 @@ class CreateFamilyTable extends Migration
             $table->integer('species_count');
             $table->integer('species_count_lv');
             $table->string('order', 35)->constrained();
-            $table->timestamps();
         });
     }
 

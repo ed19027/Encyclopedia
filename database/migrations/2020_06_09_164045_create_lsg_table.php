@@ -17,7 +17,6 @@ class CreateLsgTable extends Migration
             $table->tinyInteger('category')->primary();
             $table->string('color',15);
             $table->string('description');
-            $table->timestamps();
         });
     }
 
