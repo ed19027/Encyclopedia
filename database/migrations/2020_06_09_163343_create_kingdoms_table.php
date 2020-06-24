@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFamilyTable extends Migration
+class CreateKingdomsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateFamilyTable extends Migration
      */
     public function up()
     {
-        Schema::create('family', function (Blueprint $table) {
-            $table->string('name_latin',35)->primary();
+        Schema::create('kingdoms', function (Blueprint $table) {
+            $table->id();
+            $table->string('name_latin',35);
             $table->string('name_latvian',35);
-            $table->integer('species_count');
-            $table->integer('species_count_lv');
-            $table->string('order', 35)->constrained();
         });
     }
 
@@ -29,6 +27,6 @@ class CreateFamilyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('family');
+        Schema::dropIfExists('kingdoms');
     }
 }

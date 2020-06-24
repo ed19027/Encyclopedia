@@ -6,24 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Species extends Model
 {
-    public function families() 
+    public function family() 
     {       
-        return $this->hasMany('App\Family');     
+        return $this->belongsTo('App\Family', 'family_id');     
     }
-    public function subfamilies() 
+    public function subfamily() 
     {       
-        return $this->hasMany('App\Subamily');     
+        return $this->belongsTo('App\Subamily', 'subfamily_id');     
     }
-    public function genuses() 
+    public function genus() 
     {       
-        return $this->hasMany('App\Genus');     
+        return $this->belongsTo('App\Genus', 'genus_id');     
     }
-    public function categories() 
+    public function lsg() 
     {       
-        return $this->hasMany('App\LSG');     
+        return $this->belongsTo('App\LSG', 'lsg_id');     
     }
-    public function watchLater()
+    public function watchLaters()
     {
-        return $this->belongsTo('App\WatchLater');
+        return $this->hasMany('App\WatchLater');
     }
 }

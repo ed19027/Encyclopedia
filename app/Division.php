@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Division extends Model
 {
-    public function kingdoms() 
+    public function kingdom() 
     {       
-        return $this->hasMany('App\Kingdom');     
+        return $this->belongsTo('App\Kingdom', 'kingdom_id');     
     }
     public function subdivision()
     {
-        return $this->belongsTo('App\Subivision');
+        return $this->hasMany('App\Subivision');
     }
 }

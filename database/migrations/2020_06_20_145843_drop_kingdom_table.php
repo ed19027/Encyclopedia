@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKingdomTable extends Migration
+class DropKingdomTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,7 @@ class CreateKingdomTable extends Migration
      */
     public function up()
     {
-        Schema::create('kingdom', function (Blueprint $table) {
-            $table->string('name_latin',35)->primary();
-            $table->string('name_latvian',35);
-        });
+        //
     }
 
     /**
@@ -26,6 +23,6 @@ class CreateKingdomTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kingdom');
+        //
     }
 }

@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subdivision extends Model
 {
-    public function divisions() 
+    public function division() 
     {       
-        return $this->hasMany('App\Division');     
+        return $this->belongsTo('App\Division', 'division_id');     
     }
-    public function clasz()
+    public function clases()
     {
-        return $this->belongsTo('App\Class');
+        return $this->hasMany('App\Clasz');
     }
 }

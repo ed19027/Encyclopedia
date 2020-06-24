@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    public function clases() 
+    public function clasz() 
     {       
-        return $this->hasMany('App\Clasz');     
+        return $this->belongsTo('App\Clasz', 'class_id');     
     }
-    public function family()
+    public function families()
     {
-        return $this->belongsTo('App\Family');
+        return $this->hasMany('App\Family');
     }
 }

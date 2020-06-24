@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWatchLaterTable extends Migration
+class CreateGenusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateWatchLaterTable extends Migration
      */
     public function up()
     {
-        Schema::create('watch_later', function (Blueprint $table) {
+        Schema::create('genuses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('specie_id', 35)->constrained();
-            $table->foreignId('user_id')->constrained();
-            $table->timestamps();
+            $table->string('name_latin',35);
+            $table->string('name_latvian',35)->nullable();
+            $table->foreignId('family_id')->nullable()->constrained();
+            $table->foreignId('subfamily_id')->nullable()->constrained();
         });
     }
 
@@ -28,6 +29,6 @@ class CreateWatchLaterTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('watch_later');
+        Schema::dropIfExists('genuses');
     }
 }

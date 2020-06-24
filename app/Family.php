@@ -5,13 +5,17 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Family extends Model
-{
-    public function orders() 
+{   
+    public function order() 
     {       
-        return $this->hasMany('App\Order');     
+        return $this->belongsTo('App\Order', 'order_id');     
     }
-    public function subfamily()
+    public function subfamilies()
     {
-        return $this->belongsTo('App\Subfamily');
+        return $this->hasMany('App\Subfamily');
+    }
+    public function genuses()
+    {
+        return $this->hasMany('App\Genus');
     }
 }

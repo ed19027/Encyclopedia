@@ -14,9 +14,9 @@ class CreateLsgTable extends Migration
     public function up()
     {
         Schema::create('lsg', function (Blueprint $table) {
-            $table->tinyInteger('category')->primary();
+            $table->tinyInteger('category')->primary()->unsigned();
             $table->string('color',15);
-            $table->string('description');
+            $table->text('description');
         });
     }
 

@@ -6,16 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Genus extends Model
 {
-    public function families() 
+    public function family() 
     {       
-        return $this->hasMany('App\Family');     
+        return $this->belongsTo('App\Family', 'family_id');     
     }
-    public function subfamilies() 
+    public function subfamily() 
     {       
-        return $this->hasMany('App\Subamily');     
+        return $this->belongsTo('App\Subamily', 'subfamily_id');     
     }
     public function species()
     {
-        return $this->belongsTo('App\Species');
+        return $this->hasMany('App\Species');
     }
 }

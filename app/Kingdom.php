@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kingdom extends Model
 {
-    public function division()
+    public function divisions()
     {
-        return $this->belongsTo('App\Division');
+        return $this->hasMany('App\Division');
     }
 }

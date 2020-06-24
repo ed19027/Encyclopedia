@@ -13,7 +13,7 @@ class SpeciesController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -43,9 +43,9 @@ class SpeciesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($family)
     {
-        //
+        return view('species', array('species' => Species::where('family_id', $family)->get()));
     }
 
     /**
@@ -54,7 +54,7 @@ class SpeciesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($family)
     {
         //
     }

@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Clasz extends Model
 {
-    public function subdivisions() 
+    protected $table = 'clases';
+    
+    public function subdivision() 
     {       
-        return $this->hasMany('App\Subdivision');     
+        return $this->belongsTo('App\Subdivision', 'subdivision_id');     
     }
-    public function order()
+    public function orders()
     {
-        return $this->belongsTo('App\Order');
+        return $this->hasMany('App\Order');
     }
 }

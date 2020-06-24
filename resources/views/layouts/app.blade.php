@@ -22,7 +22,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div class="container mx-6">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -32,9 +32,10 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -71,10 +72,30 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="list-group">
+                        <a href="{{route('class.show', $class='Amphibia')}}" class="list-group-item list-group-item-action">Abinieki</a>
+                        <a href="{{route('class.show', $class='Cyclostomata')}}" class="list-group-item list-group-item-action">Apaļmutnieki</a>
+                        <a href="{{route('class.show', $class='Osteichthyes')}}" class="list-group-item list-group-item-action">Kaulzivis</a>
+                        <a href="{{route('class.show', $class='Reptilia')}}" class="list-group-item list-group-item-action">Rāpuļi</a>
+                        <a href="{{route('class.show', $class='Aves')}}" class="list-group-item list-group-item-action">Putni</a>
+                        <a href="{{route('class.show', $class='Mammalia')}}" class="list-group-item list-group-item-action">Zīdītāji</a>
+                        <a href="#" class="list-group-item list-group-item-action">Skatīt Vēlāk</a>
+                        @if ( !Auth::guest() && Auth::user()->isAdmin() )
+                            <a href="#" class="list-group-item list-group-item-action">Administrators</a>
+                        @endif 
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <main>
+                        @yield('content')
+                    </main>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

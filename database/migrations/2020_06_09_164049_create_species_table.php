@@ -14,22 +14,21 @@ class CreateSpeciesTable extends Migration
     public function up()
     {
         Schema::create('species', function (Blueprint $table) {
-            $table->string('name_latin',35)->primary();
+            $table->id();
+            $table->string('name_latin',35);
             $table->string('name_latvian',35);
             $table->text('description')->nullable();
             $table->text('biology')->nullable();
             $table->decimal('size',4,2)->nullable();
-            $table->text('weight',7,3)->nullable();
+            $table->decimal('weight',7,3)->nullable();
             $table->text('reproduction')->nullable();
             $table->text('prevalence')->nullable();
-            $table->string('family', 35)->nullable();
-            $table->foreign('family')->references('name_latin')->on('family');
-            $table->string('subfamily', 35)->nullable();
-            $table->foreign('subfamily')->references('name_latin')->on('subfamily');
-            $table->string('genus', 35)->nullable();
-            $table->foreign('genus')->references('name_latin')->on('genus');
-            $table->tinyInteger('lsg')->nullable();
-            $table->foreign('lsg')->references('category')->on('lsg');
+            $table->foreignId('family_id')->nullable()->constrained();
+            $table->foreignId('subfamily_id')->nullable()->constrained();
+            $table->bigInteger('genus_id')->unsigned()->nullable();
+            $table->foreign('genus_id')->references('id')->on('genuses');
+            $table->tinyInteger('lsg_id')->unsigned()->nullable();
+            $table->foreign('lsg_id')->references('category')->on('lsg');
         });
     }
 
