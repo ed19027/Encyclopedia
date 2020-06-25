@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\WatchLater;
 use Illuminate\Http\Request;
 
 class WatchLaterController extends Controller
@@ -11,9 +12,18 @@ class WatchLaterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct() 
+    {  
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
-        //
+        $user_id = auth()->user()->id;
+        
+        $later = WatchLater::where('user_id', $user_id)->findOrFail();
+        
+        return view('watch_later', ['later' => $later]);
     }
 
     /**

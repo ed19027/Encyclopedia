@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Species;
+use App\Family;
 use Illuminate\Http\Request;
 
 class FamilyController extends Controller
@@ -45,7 +47,7 @@ class FamilyController extends Controller
      */
     public function show($family)
     {
-        return view('species', array('species' => Species::where('family_id', $family)->get()));
+        return view('species', array('family' => Family::where('name_latin', $family)->firstOrFail(), 'species' => Species::where('family_id', $family)->get()));
     }
 
     /**

@@ -32,11 +32,10 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <form class="form-inline my-2 my-lg-0">
-                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <form class="form-inline my-2 my-lg-0 ml-3">
+                      <input class="form-control mr-sm-2" type="search" placeholder="Sugas nosaukums" aria-label="Search" id="search">
+                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Meklēt</button>
                     </form>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -83,9 +82,9 @@
                         <a href="{{route('class.show', $class='Reptilia')}}" class="list-group-item list-group-item-action">Rāpuļi</a>
                         <a href="{{route('class.show', $class='Aves')}}" class="list-group-item list-group-item-action">Putni</a>
                         <a href="{{route('class.show', $class='Mammalia')}}" class="list-group-item list-group-item-action">Zīdītāji</a>
-                        <a href="#" class="list-group-item list-group-item-action">Skatīt Vēlāk</a>
+                        <a href="{{url('watch-later')}}" class="list-group-item list-group-item-action">Skatīt Vēlāk</a>
                         @if ( !Auth::guest() && Auth::user()->isAdmin() )
-                            <a href="#" class="list-group-item list-group-item-action">Administrators</a>
+                            <a href="{{url('admin')}}" class="list-group-item list-group-item-action">Administrators</a>
                         @endif 
                     </div>
                 </div>

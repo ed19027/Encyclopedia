@@ -15,9 +15,21 @@ class ClassController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($class)
+    public function showSystematic($class)
     {
         return view('systematic', array('class' => Clasz::where('name_latin', $class)->firstOrFail(), 'orders' => Order::all(), 'families' => Family::all()));
+    }
+    
+    public function showSpecies($class, $family)
+    {
+        return view('species', array('class' => Clasz::where('name_latin', $class)->firstOrFail(), 'family' => Family::where('name_latin', $family)->firstOrFail(), 'species' => Species::all()));
+    }
+    
+    public function showSpecie($class, $specie)
+    {
+        $specie_latin = str_replace('-', ' ', $specie);
+        
+        return view('specie', array('class' => Clasz::where('name_latin', $class)->firstOrFail(), 'specie' => Species::where('name_latin', $specie_latin)->firstOrFail()));
     }
 
     /**
@@ -49,26 +61,7 @@ class ClassController extends Controller
      */
     public function show($class)
     {
-        /*
-        $species = Species::where(function ($query) {
-            $query->select('name_latin')
-                ->from('family')
-                ->where('order', 'Anguiliformes')
-                ->limit(1);
-        }, 'Cyprinidae')->get();
-        */
         return view('class', array('class' => Clasz::where('name_latin', $class)->firstOrFail(), 'species' => Species::all()));
-        /*
-        $species = Species::where(function ($query) {
-            $query->select('order')
-                ->from('family')
-                ->where(function ($query) {
-                    $query->select('class')
-                        ->from('order')
-                        ->where('class', $class)
-                }, 'Pro')->get();)
-        }, $class)->get();
-        */
     }
 
     /**

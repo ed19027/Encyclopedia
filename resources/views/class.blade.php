@@ -10,7 +10,7 @@
             @endif
     </div>
     <div class="row">
-        <a href="{{route('class.index', $class->name_latin)}}"  class="btn btn-success" role="button">Sistemātika</a>
+        <a href="{{route('class.showSystematic', $class->name_latin)}}"  class="btn btn-success" role="button">Sistemātika</a>
     </div>
     <br>
     <div class="row">
@@ -19,12 +19,16 @@
         @endphp
         @foreach ($species as $specie)
         @if($specie->family->order->clasz->id == $class->id and $limit < 3)
+        @php
+            $s = $specie->name_latin;
+            $specie_latin = str_replace(' ', '-', $s);
+        @endphp
         <div class="col-sm-4">
             <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">{{$specie->name_latvian}}</h4>
                   <h6 class="card-subtitle mb-2 text-muted">{{$specie->name_latin}}</h6>
-                  <a href="#" class="stretched-link"></a>
+                  <a href="{{route('class.showSpecie', ['specie' => $specie_latin, 'class' => $class->name_latin])}}" class="stretched-link"></a>
                 </div>
             </div>
         </div>

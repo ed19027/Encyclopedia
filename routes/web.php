@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
 });
 
 Auth::routes();
@@ -23,6 +23,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/{class}', 'ClassController@show')->name('class.show');
 
-Route::get('/{class}/systematic', 'ClassController@index')->name('class.index');
+Route::get('/{class}/systematic', 'ClassController@showSystematic')->name('class.showSystematic');
 
-Route::get('/{family}', 'FamilyController@show')->name('family.index');
+Route::get('/{class}/systematic/{family}', 'ClassController@showSpecies')->name('class.showSpecies');
+
+Route::get('/{class}/{specie}', 'ClassController@showSpecie')->name('class.showSpecie');
+
+Route::resource('watch-later', 'WatchLaterController', ['only' => ['index']]);
+
+Route::get('admin', 'AdminController');

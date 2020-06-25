@@ -32,44 +32,64 @@
                         </li>
                         <ul class="list-unstyled ml-5 mt-1">
                             <div class="btn-group btn-sm dropright">
-                              <button type="button" class="btn btn-success">
-                              @foreach($orders as $key => $order)
-                                @if($order->class_id == $class->id and $key == 1)
-                                  Karta | {{$order->name_latvian}} ({{$order->name_latin}})
+                                <button type="button" class="btn btn-success">
+                                @php
+                                    $count = 0;  
+                                @endphp
+                                @foreach($orders as $order)
+                                    @if($order->class_id == $class->id and $count == 0)
+                                        @php
+                                            $count += 1;
+                                            $classId[] = array('id' => $order->class_id);
+                                            $size = sizeof($classId);
+                                        @endphp
+                                        Karta | {{$order->name_latvian}} ({{$order->name_latin}})
+                                    @endif
+                                @endforeach
+                                </button>
+                                @if($size >= 1)
+                                <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="sr-only">Toggle Dropright</span>
+                                </button>
+                                <div class="dropdown-menu">
+                                @foreach($orders as $key => $order)
+                                    @if($order->class_id == $class->id and $key > 0)
+                                        <a class="dropdown-item" href="#">{{$order->name_latvian}} ({{$order->name_latin}})</a>
+                                    @endif
+                                @endforeach
+                                </div>
                                 @endif
-                              @endforeach
-                              </button>
-                              <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Toggle Dropright</span>
-                              </button>
-                              <div class="dropdown-menu">
-                              @foreach($orders as $key => $order)
-                                @if($order->class_id == $class->id and $key > 1)
-                                <a class="dropdown-item" href="#">{{$order->name_latvian}} ({{$order->name_latin}})</a>
-                                @endif
-                              @endforeach
-                              </div>
                             </div> 
                             <ul class="list-unstyled ml-5">
                                 <div class="btn-group btn-sm dropright">
-                                  <button type="button" class="btn btn-success">
-                                  @foreach($families as $key => $family)
-                                    @if($family->order_id == $order->id and $key == 1)
-                                      Dzimta | {{$family->name_latvian}} ({{$family->name_latin}})
+                                <button type="button" class="btn btn-success">
+                                @php
+                                    $count = 0;  
+                                @endphp
+                                @foreach($families as $family)
+                                    @if($family->order->class_id == $class->id and $count == 0)
+                                        @php
+                                            $count += 1;
+                                            $classId[] = array('id' => $family->class_id);
+                                            $size = sizeof($classId);
+                                        @endphp
+                                        Dzimta | {{$family->name_latvian}} ({{$family->name_latin}})
                                     @endif
-                                  @endforeach
-                                  </button>
-                                  <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @endforeach
+                                </button>
+                                @if($size > 0)
+                                <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="sr-only">Toggle Dropright</span>
-                                  </button>
-                                  <div class="dropdown-menu">
-                                  @foreach($orders as $key => $order)
-                                    @if($family->order_id == $order->id  and $key > 1)
-                                    <a class="dropdown-item" href="#">Dzimta - {{$family->name_latvian}} ({{$family->name_latin}})</a>
+                                </button>
+                                <div class="dropdown-menu">
+                                @foreach($families as $family)
+                                    @if($family->order->class_id == $class->id)
+                                        <a class="dropdown-item" href="{{route('class.showSpecies', ['family' => $family->name_latin, 'class' => $class->name_latin])}}">{{$family->name_latvian}} ({{$family->name_latin}})</a>
                                     @endif
-                                  @endforeach
-                                  </div>
+                                @endforeach
                                 </div>
+                                @endif
+                            </div>
                             </ul>
                         </ul>
                     </ul>
