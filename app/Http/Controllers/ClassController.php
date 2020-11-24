@@ -6,6 +6,7 @@ use App\Species;
 use App\Order;
 use App\Clasz;
 use App\Family;
+use App\WatchLater;
 use Illuminate\Http\Request;
 
 class ClassController extends Controller
@@ -18,6 +19,11 @@ class ClassController extends Controller
     public function showSystematic($class)
     {
         return view('systematic', array('class' => Clasz::where('name_latin', $class)->firstOrFail(), 'orders' => Order::all(), 'families' => Family::all()));
+    }
+    
+    public function showFamilies($class, $order)
+    {
+        return view('families', array('class' => Clasz::where('name_latin', $class)->firstOrFail(), 'order' => Order::where('name_latin', $order)->firstOrFail(), 'families' => Family::all()));
     }
     
     public function showSpecies($class, $family)
@@ -50,7 +56,12 @@ class ClassController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id = auth()->user()->id;
+        
+        $later = new WhatchLater();  
+        $later->specie_id=$request->specie_id;
+        $later->user_id=$user_id;
+        $later->save();
     }
 
     /**

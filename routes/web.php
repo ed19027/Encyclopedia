@@ -21,13 +21,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/{class}', 'ClassController@show')->name('class.show');
+Route::get('/class/{class}', 'ClassController@show')->name('class.show');
 
-Route::get('/{class}/systematic', 'ClassController@showSystematic')->name('class.showSystematic');
+Route::get('/class/{class}/systematic', 'ClassController@showSystematic')->name('class.showSystematic');
 
-Route::get('/{class}/systematic/{family}', 'ClassController@showSpecies')->name('class.showSpecies');
+Route::get('/class/{class}/order/{order}', 'ClassController@showFamilies')->name('class.showFamilies');
 
-Route::get('/{class}/{specie}', 'ClassController@showSpecie')->name('class.showSpecie');
+Route::get('/class/{class}/family/{family}', 'ClassController@showSpecies')->name('class.showSpecies');
+
+Route::get('/class/{class}/{specie}', 'ClassController@showSpecie')->name('class.showSpecie');
 
 Route::resource('watch-later', 'WatchLaterController', ['only' => ['index']]);
 

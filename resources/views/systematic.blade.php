@@ -1,101 +1,58 @@
 @extends('layouts.app')
 @section('content')
+<div class="row ml-1">
+    <h4 class="d-inline">{{$class->name_latvian}} - Sistemātika</h4>
+</div>
+<hr class="mt-1">
 <div class="container">
-    <div class="row">
-        <h4 class="d-inline">{{$class->name_latvian}} - Sistemātika</h4>
-    </div>
-    <br>
     <div class="row">
         <ul class="list-unstyled">
             <li>
-                <button type="button" class="btn btn-success" disabled>
+                <button type="button" class="btn btn-outline-info" disabled>
                 Valsts | {{$class->subdivision->division->kingdom->name_latvian}} ({{$class->subdivision->division->kingdom->name_latin}})
                 </button>
             </li>
-            <ul class="list-unstyled ml-5 mt-2">
+            <ul class="list-unstyled ml-5 mt-3">
                 <li>
-                    <button type="button" class="btn btn-success" disabled>
+                    <button type="button" class="btn btn-outline-success" disabled>
                     Tips | {{$class->subdivision->division->name_latvian}} ({{$class->subdivision->division->name_latin}})
                     </button>
                 </li>
-                <ul class="list-unstyled ml-5 mt-2">
+                <ul class="list-unstyled ml-5 mt-3">
                     <li>
-                        <button type="button" class="btn btn-success" disabled>
+                        <button type="button" class="btn btn-outline-info" disabled>
                         Apakštips | {{$class->subdivision->name_latvian}} ({{$class->subdivision->name_latin}})
                         </button>
                     </li>
-                    <ul class="list-unstyled ml-5 mt-2">
+                    <ul class="list-unstyled ml-5 mt-3">
                         <li>
-                            <button type="button" class="btn btn-success" disabled>
+                            <button type="button" class="btn btn-outline-success" disabled>
                             Klase | {{$class->name_latvian}} ({{$class->name_latin}})
                             </button>
                         </li>
-                        <ul class="list-unstyled ml-5 mt-1">
-                            <div class="btn-group btn-sm dropright">
-                                <button type="button" class="btn btn-success">
-                                @php
-                                    $count = 0;  
-                                @endphp
-                                @foreach($orders as $order)
-                                    @if($order->class_id == $class->id and $count == 0)
-                                        @php
-                                            $count += 1;
-                                            $classId[] = array('id' => $order->class_id);
-                                            $size = sizeof($classId);
-                                        @endphp
-                                        Karta | {{$order->name_latvian}} ({{$order->name_latin}})
-                                    @endif
-                                @endforeach
-                                </button>
-                                @if($size >= 1)
-                                <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="sr-only">Toggle Dropright</span>
-                                </button>
-                                <div class="dropdown-menu">
-                                @foreach($orders as $key => $order)
-                                    @if($order->class_id == $class->id and $key > 0)
-                                        <a class="dropdown-item" href="#">{{$order->name_latvian}} ({{$order->name_latin}})</a>
-                                    @endif
-                                @endforeach
-                                </div>
-                                @endif
-                            </div> 
-                            <ul class="list-unstyled ml-5">
-                                <div class="btn-group btn-sm dropright">
-                                <button type="button" class="btn btn-success">
-                                @php
-                                    $count = 0;  
-                                @endphp
-                                @foreach($families as $family)
-                                    @if($family->order->class_id == $class->id and $count == 0)
-                                        @php
-                                            $count += 1;
-                                            $classId[] = array('id' => $family->class_id);
-                                            $size = sizeof($classId);
-                                        @endphp
-                                        Dzimta | {{$family->name_latvian}} ({{$family->name_latin}})
-                                    @endif
-                                @endforeach
-                                </button>
-                                @if($size > 0)
-                                <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="sr-only">Toggle Dropright</span>
-                                </button>
-                                <div class="dropdown-menu">
-                                @foreach($families as $family)
-                                    @if($family->order->class_id == $class->id)
-                                        <a class="dropdown-item" href="{{route('class.showSpecies', ['family' => $family->name_latin, 'class' => $class->name_latin])}}">{{$family->name_latvian}} ({{$family->name_latin}})</a>
-                                    @endif
-                                @endforeach
-                                </div>
-                                @endif
-                            </div>
+                        @foreach($orders as $order)
+                        @if($order->class_id == $class->id)
+                        <ul class="list-unstyled ml-5 mt-3">
+                            <a type="button" class="btn btn-outline-info" href="{{route('class.showFamilies', ['order' => $order->name_latin, 'class' => $class->name_latin])}}">
+                                Karta | {{$order->name_latvian}} ({{$order->name_latin}})
+                            </a>
+                            @foreach($families as $family)
+                            @if($family->order_id == $order->id)
+                            <ul class="list-unstyled ml-5 mt-3 mb-1">
+                                <a role="button" class="btn btn-outline-success" href="{{route('class.showSpecies', ['family' => $family->name_latin, 'class' => $class->name_latin])}}">
+                                    {{$family->name_latvian}} dzimta ({{$family->name_latin}})
+                                </a>
                             </ul>
+                            @endif
+                            @endforeach
                         </ul>
+                        @endif
+                        @endforeach
                     </ul>
                 </ul>
             </ul>
         </ul>
     </div>
 </div>
+<hr class="mt-1">
 @endsection

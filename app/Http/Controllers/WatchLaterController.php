@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\WatchLater;
+use App\Species;
 use Illuminate\Http\Request;
 
 class WatchLaterController extends Controller
@@ -21,9 +22,7 @@ class WatchLaterController extends Controller
     {
         $user_id = auth()->user()->id;
         
-        $later = WatchLater::where('user_id', $user_id)->findOrFail();
-        
-        return view('watch_later', ['later' => $later]);
+        return view('watch_later', array('later' => WatchLater::where('user_id', $user_id)->get()));
     }
 
     /**
@@ -44,7 +43,12 @@ class WatchLaterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id = auth()->user()->id;
+        
+        $later = new WhatchLater();  
+        $later->specie_id=$request->specie_id;
+        $later->user_id=$user_id;
+        $later->save();
     }
 
     /**

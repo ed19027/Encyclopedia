@@ -18,6 +18,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
     <div id="app">
@@ -76,12 +81,12 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="list-group">
-                        <a href="{{route('class.show', $class='Amphibia')}}" class="list-group-item list-group-item-action">Abinieki</a>
-                        <a href="{{route('class.show', $class='Cyclostomata')}}" class="list-group-item list-group-item-action">Apaļmutnieki</a>
-                        <a href="{{route('class.show', $class='Osteichthyes')}}" class="list-group-item list-group-item-action">Kaulzivis</a>
-                        <a href="{{route('class.show', $class='Reptilia')}}" class="list-group-item list-group-item-action">Rāpuļi</a>
-                        <a href="{{route('class.show', $class='Aves')}}" class="list-group-item list-group-item-action">Putni</a>
-                        <a href="{{route('class.show', $class='Mammalia')}}" class="list-group-item list-group-item-action">Zīdītāji</a>
+                        <a href="{{route('class.show', 'Amphibia')}}" class="list-group-item list-group-item-action">Abinieki</a>
+                        <a href="{{route('class.show', 'Cyclostomata')}}" class="list-group-item list-group-item-action">Apaļmutnieki</a>
+                        <a href="{{route('class.show', 'Osteichthyes')}}" class="list-group-item list-group-item-action">Kaulzivis</a>
+                        <a href="{{route('class.show', 'Reptilia')}}" class="list-group-item list-group-item-action">Rāpuļi</a>
+                        <a href="{{route('class.show', 'Aves')}}" class="list-group-item list-group-item-action">Putni</a>
+                        <a href="{{route('class.show', 'Mammalia')}}" class="list-group-item list-group-item-action">Zīdītāji</a>
                         <a href="{{url('watch-later')}}" class="list-group-item list-group-item-action">Skatīt Vēlāk</a>
                         @if ( !Auth::guest() && Auth::user()->isAdmin() )
                             <a href="{{url('admin')}}" class="list-group-item list-group-item-action">Administrators</a>

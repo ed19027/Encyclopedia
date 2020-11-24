@@ -1,19 +1,20 @@
 @extends('layouts.app')
 @section('content')
-@isset($later)
+@if($later->isnotEmpty())
 <div class="container">
     <div class="row">
-
+        $later
     </div>
 </div>
-@endisset
-@empty($later)
+@elseif($later->isEmpty())
+<div class="row ml-0">
+    <h4>Skatīt vēlāk</h4>
+</div>
+<hr class="mt-0">
 <div class="container">
     <div class="row">
-            <div class="card">
-                <h4 class="list-group-item list-group-item-primary">You haven't added any species to Watch Later!</h4>
-            </div>
+        <h5 class="text-danger">Neviena suga vēl nav pievienota</h5>
     </div>
 </div>
-@endempty
+@endif
 @endsection
