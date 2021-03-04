@@ -12,7 +12,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Schema::disableForeignKeyConstraints();
-        $this->call(UserSeeder::class);
+        Eloquent::unguard();
+        $path = 'database/encyclopedia.sql';
+        DB::unprepared(file_get_contents($path));
         Schema::enableForeignKeyConstraints();
     }
 }
