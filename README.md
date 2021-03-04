@@ -33,3 +33,6 @@ Using WAMP or XAMPP server in PhpMyAdmin create new database (provide name 'ency
 ```url
     localhost/%your_folder_name%/public
 ```
+
+#### Also in 'UI images' folder you can see the screenshots from user interface
+
