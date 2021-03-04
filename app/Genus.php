@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Genus extends Model
 {
+    protected $table = 'genuses';
+    
     public function family() 
     {       
         return $this->belongsTo('App\Family', 'family_id');     

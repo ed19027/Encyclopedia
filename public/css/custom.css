@@ -14,6 +14,15 @@
   border-radius: 1rem;
 }
 
+.bi-three-dots-vertical{
+  color: #38c172;
+  transition: fill 0.15s ease-in-out;
+}
+
+.bi-three-dots-vertical:hover{
+  fill: #2d995b;
+}
+
 .bi-clock-fill{
   fill: #38c172;
   transition: fill 0.15s ease-in-out;
@@ -21,4 +30,23 @@
 
 .bi-clock-fill:hover{
   fill: #2d995b;
+}
+
+.text{
+  line-height: 5em;
+}
+
+p{
+    display: inline;
+}
+
+.search-results{
+    position: absolute;
+    z-index: 1000;
+    top: 40px;
+    background-color: rgba(0,0,0,0);
+}
+
+#spec:hover{
+    background-color: #f8f9fa;
 }

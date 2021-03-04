@@ -2,7 +2,8 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <h4>Kārta - {{$order->name_latvian}} </h4>&nbsp<h5>({{$order->name_latin}})</h5>
+        <h4>Kārta - {{$order->name_latvian}} </h4>&nbsp
+        <h5 style="padding-top: 2.5px;">({{$order->name_latin}})</h5>
     </div>
     <div class="row">
         @if ($order->name_latin == 'Petromyzontiformes')

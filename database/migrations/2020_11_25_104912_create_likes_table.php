@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWatchLaterTable extends Migration
+class CreateLikesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,18 @@ class CreateWatchLaterTable extends Migration
      */
     public function up()
     {
-        Schema::create('watch_later', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->morphs('likeable');
+            $table->foreignId('specie_id');
             $table->timestamps();
             
             $table->foreign('user_id')
                 ->references('id')->on('users')
+                ->onDelete('cascade');
+            
+            $table->foreign('specie_id')
+                ->references('id')->on('species')
                 ->onDelete('cascade');
         });
     }
@@ -32,6 +36,6 @@ class CreateWatchLaterTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('watch_later');
+        Schema::dropIfExists('likes');
     }
 }

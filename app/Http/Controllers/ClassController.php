@@ -1,12 +1,11 @@
-<?php
-
+<?php   
 namespace App\Http\Controllers;
 
 use App\Species;
 use App\Order;
 use App\Clasz;
 use App\Family;
-use App\WatchLater;
+use App\Like;
 use Illuminate\Http\Request;
 
 class ClassController extends Controller
@@ -28,7 +27,7 @@ class ClassController extends Controller
     
     public function showSpecies($class, $family)
     {
-        return view('species', array('class' => Clasz::where('name_latin', $class)->firstOrFail(), 'family' => Family::where('name_latin', $family)->firstOrFail(), 'species' => Species::all()));
+        return view('species', array('class' => Clasz::where('name_latin', $class)->firstOrFail(), 'family' => Family::where('name_latin', $family)->firstOrFail(), 'species' => Species::all(), 'selected' => session()->has('laters') ? session()->get('laters') : []));
     }
     
     public function showSpecie($class, $specie)
@@ -37,7 +36,6 @@ class ClassController extends Controller
         
         return view('specie', array('class' => Clasz::where('name_latin', $class)->firstOrFail(), 'specie' => Species::where('name_latin', $specie_latin)->firstOrFail()));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -56,12 +54,7 @@ class ClassController extends Controller
      */
     public function store(Request $request)
     {
-        $user_id = auth()->user()->id;
-        
-        $later = new WhatchLater();  
-        $later->specie_id=$request->specie_id;
-        $later->user_id=$user_id;
-        $later->save();
+        //
     }
 
     /**

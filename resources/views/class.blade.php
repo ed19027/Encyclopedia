@@ -2,7 +2,8 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <h4>{{$class->name_latvian}}</h4>&nbsp<h5>({{$class->name_latin}})</h5>
+        <h4>{{$class->name_latvian}}</h4>&nbsp
+        <h5 style="padding-top: 2.5px;">({{$class->name_latin}})</h5>
         @if ($class->name_latin == 'Osteichthyes')
             <p class="text-justify">Lielākā un dominējošā zivju klase mūsdienās visā pasaulē. To skaitā ir ap 96% jeb ap 28,000 mūsdienās zināmo zivju sugu. Primitīvākās veidojušās Kembrija periodā pirms aptuveni 550 miljoniem gadu. Daudzveidības (dažādošanās) laikmets bijis Devona periodā. Raksturīgas gan pāra, gan nepāra spuras. Ķermenis klāts ar zvīņām. Skelets veidots no kauliem: nodalāms galvaskausa, ass un ekstremitāšu skelets. Ass skelets no skriemeļiem, kam ir augšējie un apakšējie loki. Ekstremitāšu skelets sastāv no spuras stariem - parasti tie savienoti ar plēvi. Galvenais elpošanas orgāns ir žaunas.</p>
             @elseif ($class->name_latin == 'Cyclostomata')
@@ -43,28 +44,17 @@
         <div class="col-sm-4">
             <div class="card">
                 <div class="card-body p-3">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div style="transform: rotate(0);">
-                            <h4 class="card-title" >
-                                {{$specie->name_latvian}}
-                                @isset($specie->lsg)
-                                <svg width="0.9em" height="0.8em" viewBox="0 0 16 16" class="bi bi-circle-fill pb-1" fill="{{$specie->lsg->color}}" xmlns="http://www.w3.org/2000/svg">
-                                    <title>Iekļauta Latvijas Sarkanās grāmatas {{$specie->lsg->category}}. kategorijā </title>
-                                    <circle cx="8" cy="8" r="8"/>
-                                </svg>
-                                @endisset
-                            </h4>
-                            <h6 class="card-subtitle mb-2 text-muted">{{$specie->name_latin}}</h6>
-                            <a href="{{route('class.showSpecie', ['specie' => $specie_latin, 'class' => $class->name_latin])}}" class="stretched-link"></a>
-                        </div>
-                        <div class="mb-4">
-                            <a class="btn-svg" role="button" title="Skatīt vēlāk">
-                                <svg width="2.2em" height="2.2em" viewBox="0 0 16 16" class="bi bi-clock-fill mt-0" xmlns="http://www.w3.org/2000/svg">
-                                  <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-                                </svg> 
-                            </a>
-                        </div>
-                    </div>
+					<h4 class="card-title" >
+						{{$specie->name_latvian}}
+						@isset($specie->lsg)
+						<svg width="0.9em" height="0.8em" viewBox="0 0 16 16" class="bi bi-circle-fill pb-1" fill="{{$specie->lsg->color}}" xmlns="http://www.w3.org/2000/svg">
+							<title>Iekļauta Latvijas Sarkanās grāmatas {{$specie->lsg->category}}. kategorijā </title>
+							<circle cx="8" cy="8" r="8"/>
+						</svg>
+						@endisset
+					</h4>
+					<h6 class="card-subtitle mb-2 text-muted">{{$specie->name_latin}}</h6>
+					<a href="{{ url('/specie/'.$specie_latin)}}" class="stretched-link"></a>
                 </div>
             </div>
         </div>
@@ -73,6 +63,7 @@
         @endphp
         @endif
         @endforeach
+        
         @if ($limit == 0)
         <h5 class="text-danger pl-3">Dziemžēl, šai klasei, vēl nav pievienota neviena suga.</h5>
         @endif

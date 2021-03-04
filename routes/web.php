@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', 'MainController@index');
+
+Route::post('/search','MainController@fetch')->name('main.fetch');
 
 Auth::routes();
 
@@ -29,8 +30,10 @@ Route::get('/class/{class}/order/{order}', 'ClassController@showFamilies')->name
 
 Route::get('/class/{class}/family/{family}', 'ClassController@showSpecies')->name('class.showSpecies');
 
-Route::get('/class/{class}/{specie}', 'ClassController@showSpecie')->name('class.showSpecie');
+Route::resource('specie', 'SpeciesController', ['only' => ['create', 'store','edit','update']])->middleware('auth','admin');
 
-Route::resource('watch-later', 'WatchLaterController', ['only' => ['index']]);
+Route::get('specie/{specie}', 'SpeciesController@show')->name('specie.show');
 
 Route::get('admin', 'AdminController');
+
+
