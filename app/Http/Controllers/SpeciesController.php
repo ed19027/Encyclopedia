@@ -18,9 +18,9 @@ class SpeciesController extends Controller
     //     $species = Species::search($searchTerm)->get();
     //     return view('search', array('species' => $species), array('searchTerm' => $searchTerm));
     // }
-    
+
     public function create()
-    {        
+    {  
         return view('specie_create', array('families' => Family::all()->sortBy('name_latvian')->pluck('name_latvian','id')));
     }
 
